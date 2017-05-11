@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import CustomNavbar from './components/CustomNavbar';
-import Welcome from './components/Welcome';
-import loremIpsum from 'lorem-ipsum';
+import ProgressIndicator from './components/ProgressIndicator';
 
 class App extends Component {
     render() {
-        const description = loremIpsum({count: 5});
         return (
             <div>
                 <CustomNavbar/>
                 <Container fluid>
-                    <Welcome
-                        name="Very challenging quiz"
-                        description={description}
+                    <ProgressIndicator
+                        max={10}
+                        current={5}
                     />
                 </Container>
             </div>
