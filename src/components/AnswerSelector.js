@@ -57,7 +57,7 @@ const AnswerSelector = ({question, userAnswer, onAnswerSelected}) => {
         <div>
             <Row>
                 <Col md={12}>
-                    <h3 className="text-center">{question.text}</h3>
+                    <h3 className="text-center" style={{marginBottom: 20, marginTop: 20}}>{question.text}</h3>
                 </Col>
             </Row>
             <Row>

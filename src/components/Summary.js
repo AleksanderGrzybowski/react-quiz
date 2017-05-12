@@ -17,11 +17,11 @@ const ProgressBar = ({score, total}) => {
 
 const Summary = ({score, total}) => (
     <Row>
-        <Col md={12}>
-            <h1 className="text-center">
+        <Col md={{size: 4, push: 4}}>
+            <h1 className="text-center" style={{marginBottom: 20}}>
                 You scored {score} / {total}
-                <ProgressBar score={score} total={total}/>
             </h1>
+            <ProgressBar score={score} total={total}/>
         </Col>
     </Row>
 );
