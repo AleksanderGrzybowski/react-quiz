@@ -1,6 +1,6 @@
 {
   "name": "Basic math quiz",
-  "description": "This is a very simple math quiz, that will take you just 2 minutes",
+  "description": "This is a very simple math quiz, that will take you just 2 minutes.",
   "questions": [
     {
       "text": "How many angles does a triangle have?",
@@ -22,7 +22,7 @@
     },
 
     {
-      "text": "sin(0) is equal to",
+      "text": "sin(0) is equal to:",
       "answers": [
         {
           "text": "cos(0)"
@@ -38,6 +38,42 @@
         }
       ],
       "correctAnswer": 1
+    },
+    {
+      "text": "Definite integral tells us:",
+      "answers": [
+        {
+          "text": "how long is a line defined by function"
+        },
+        {
+          "text": "how big is the area under the function"
+        },
+        {
+          "text": "maximum and minimum values of function"
+        },
+        {
+          "text": "none of the above"
+        }
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "text": "Do you need to know linear algebra and calculus in order to get a programming job?",
+      "answers": [
+        {
+          "text": "Yes"
+        },
+        {
+          "text": "Yes of course"
+        },
+        {
+          "text": "Don't even touch the computer before learning DE"
+        },
+        {
+          "text": "Not really"
+        }
+      ],
+      "correctAnswer": 3
     }
   ]
 }
