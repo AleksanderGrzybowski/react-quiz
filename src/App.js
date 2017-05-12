@@ -19,6 +19,7 @@ class App extends Component {
             const {name, description} = this.props.quiz.data;
             view = <Welcome
                 name={name}
+                quizDataStatus={this.props.quiz.quizDataStatus}
                 description={description}
                 start={this.props.startQuiz}
             />

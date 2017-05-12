@@ -8,7 +8,7 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { quiz, view } from './reducers';
-import { changeView, selectAnswer } from './actions';
+import { fetchQuizData, changeView, selectAnswer } from './actions';
 import { createLogger } from 'redux-logger';
 
 const store = createStore(
@@ -32,3 +32,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
+store.dispatch(fetchQuizData());

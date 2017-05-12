@@ -1,0 +1,43 @@
+{
+  "name": "Basic math quiz",
+  "description": "This is a very simple math quiz, that will take you just 2 minutes",
+  "questions": [
+    {
+      "text": "How many angles does a triangle have?",
+      "answers": [
+        {
+          "text": "One"
+        },
+        {
+          "text": "Two"
+        },
+        {
+          "text": "Three"
+        },
+        {
+          "text": "There are no angles in a triangle"
+        }
+      ],
+      "correctAnswer": 2
+    },
+
+    {
+      "text": "sin(0) is equal to",
+      "answers": [
+        {
+          "text": "cos(0)"
+        },
+        {
+          "text": "cos(pi/2)"
+        },
+        {
+          "text": "1"
+        },
+        {
+          "text": "pi"
+        }
+      ],
+      "correctAnswer": 1
+    }
+  ]
+}

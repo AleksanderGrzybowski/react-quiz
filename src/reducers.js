@@ -1,5 +1,3 @@
-import loremIpsum from 'lorem-ipsum';
-
 const initialStateView = {
     currentView: 'welcome',
 };
@@ -16,23 +14,9 @@ export const view = (state = initialStateView, action) => {
 
 const initialStateQuiz = {
     currentQuestionIndex: 0,
-    userAnswers: [null, null, null, null, null],
-    data: {
-        name: 'Very challenging quiz',
-        description: loremIpsum({count: 3}),
-        questions: [...new Array(5)].map(() => (
-            {
-                text: loremIpsum({count: 1}),
-                answers: [
-                    {text: loremIpsum({count: 1})},
-                    {text: loremIpsum({count: 1})},
-                    {text: loremIpsum({count: 1})},
-                    {text: loremIpsum({count: 1})},
-                ],
-                correctAnswer: 0
-            }
-        ))
-    }
+    userAnswers: [],
+    quizDataStatus: 'loading',
+    data: {}
 };
 
 const setUserAnswer = (userAnswers, answer, index) => {
@@ -41,6 +25,16 @@ const setUserAnswer = (userAnswers, answer, index) => {
 
 export const quiz = (state = initialStateQuiz, action) => {
     switch (action.type) {
+        case 'QUIZ_FETCH_START':
+            return Object.assign({}, state, {quizDataStatus: 'loading'});
+        case 'QUIZ_FETCH_ERROR':
+            return Object.assign({}, state, {quizDataStatus: 'error'});
+        case 'QUIZ_FETCH_READY':
+            return Object.assign({}, state, {
+                quizDataStatus: 'ready',
+                data: action.data,
+                userAnswers: new Array(action.data.questions.length).fill(null)
+            });
         case 'SELECT_ANSWER':
             return Object.assign({}, state, {userAnswers: setUserAnswer(state.userAnswers, action.answer, state.currentQuestionIndex)});
         case 'NEXT_QUESTION':
