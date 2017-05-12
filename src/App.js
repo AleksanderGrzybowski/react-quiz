@@ -3,8 +3,16 @@ import { Container } from 'reactstrap';
 import CustomNavbar from './components/CustomNavbar';
 import Welcome from './components/Welcome';
 import Questions from './components/Questions';
+import Summary from './components/Summary';
 
 class App extends Component {
+    correctAnswersCount() {
+        const {quiz} = this.props;
+        return quiz.userAnswers
+            .map((answer, index) => (answer === quiz.data.questions[index].correctAnswer) ? 1 : 0)
+            .reduce((a, b) => a + b);
+    }
+
     render() {
         let view;
         if (this.props.view.currentView === 'welcome') {
@@ -21,8 +29,11 @@ class App extends Component {
                 userAnswers={this.props.quiz.userAnswers}
                 selectAnswer={this.props.selectAnswer}
             />
-        } else {
-            view = <div>Not yet implemented</div>
+        } else if (this.props.view.currentView === 'summary') {
+            view = <Summary
+                score={this.correctAnswersCount()}
+                total={this.props.quiz.data.questions.length}
+            />
         }
 
         return (
