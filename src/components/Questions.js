@@ -12,7 +12,7 @@ class Questions extends Component {
                 />
                 <AnswerSelector
                     question={this.props.quizData.questions[this.props.currentQuestionIndex]}
-                    onAnswerSelected={this.props.nextQuestion}
+                    onAnswerSelected={this.props.selectAnswer}
                 />
             </div>
         );

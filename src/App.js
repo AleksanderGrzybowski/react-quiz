@@ -19,7 +19,7 @@ class App extends Component {
             view = <Questions
                 currentQuestionIndex={this.props.quiz.currentQuestionIndex}
                 quizData={this.props.quiz.data}
-                nextQuestion={this.props.nextQuestion}
+                selectAnswer={this.props.selectAnswer}
             />
         } else {
             view = <div>Not yet implemented</div>

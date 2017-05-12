@@ -8,7 +8,7 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { quiz, view } from './reducers';
-import { changeView, nextQuestion } from './actions';
+import { changeView, selectAnswer } from './actions';
 import { createLogger } from 'redux-logger';
 
 const store = createStore(
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => ({
     changeView: (viewName) => dispatch(changeView(viewName)),
     startQuiz: () => dispatch(changeView('questions')),
-    nextQuestion: () => dispatch(nextQuestion())
+    selectAnswer: (answer) => dispatch(selectAnswer(answer))
 });
 
 
