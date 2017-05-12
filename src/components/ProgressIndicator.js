@@ -1,20 +1,29 @@
 import React from 'react';
 import { Badge, Col, Row } from 'reactstrap';
 
-const ProgressIndicator = ({max, current}) => {
+const ProgressIndicator = ({current, userAnswers, correctAnswers}) => {
     const range = (max) => [...new Array(max).keys()];
     const style = {fontSize: 30, marginRight: 5};
 
-    const badges = range(max).map(i => (
-        <Badge
-            key={i}
-            style={style}
-            color={(i <= current) ? 'primary' : 'default'}
-            pill
-        >
-            {i}
-        </Badge>
-    ));
+    const badges = range(userAnswers.length).map(i => {
+        let color;
+        if (i >= current) {
+            color = 'default';
+        } else {
+            color = (userAnswers[i] === correctAnswers[i]) ? 'success' : 'danger';
+        }
+
+        return (
+            <Badge
+                key={i}
+                style={style}
+                color={color}
+                pill
+            >
+                {i}
+            </Badge>
+        );
+    });
 
     return (
         <Row>

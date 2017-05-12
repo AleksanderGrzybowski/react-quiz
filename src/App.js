@@ -12,6 +12,10 @@ class App extends Component {
             .map((answer, index) => (answer === quiz.data.questions[index].correctAnswer) ? 1 : 0)
             .reduce((a, b) => a + b);
     }
+    
+    correctAnswers() {
+        return this.props.quiz.data.questions.map(question => question.correctAnswer);
+    }
 
     render() {
         let view;
@@ -27,6 +31,7 @@ class App extends Component {
             view = <Questions
                 currentQuestionIndex={this.props.quiz.currentQuestionIndex}
                 quizData={this.props.quiz.data}
+                correctAnswers={this.correctAnswers()}
                 userAnswers={this.props.quiz.userAnswers}
                 selectAnswer={this.props.selectAnswer}
             />

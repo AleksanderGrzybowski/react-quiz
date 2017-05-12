@@ -7,8 +7,9 @@ class Questions extends Component {
         return (
             <div>
                 <ProgressIndicator
-                    max={this.props.quizData.questions.length}
                     current={this.props.currentQuestionIndex}
+                    userAnswers={this.props.userAnswers}
+                    correctAnswers={this.props.correctAnswers}
                 />
                 <AnswerSelector
                     question={this.props.quizData.questions[this.props.currentQuestionIndex]}
