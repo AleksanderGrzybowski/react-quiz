@@ -1,17 +1,58 @@
 import React from 'react';
 import { Card, CardBlock, CardText, Col, Row } from 'reactstrap';
 
-const Answer = ({text, onAnswerSelected}) => (
-    <Card style={{minHeight: 150, marginBottom: 20, cursor: 'pointer'}} onClick={onAnswerSelected}>
-        <CardBlock>
-            <CardText>
-                {text}
-            </CardText>
-        </CardBlock>
-    </Card>
-);
+const Answer = ({text, onAnswerSelected, state}) => {
+    let cardColor;
+    if (state === 'correct') {
+        cardColor = 'success';
+    } else if (state === 'incorrect') {
+        cardColor = 'danger';
+    } else if (state === 'default') {
+        cardColor = '';
+    }
 
-const AnswerSelector = ({question, onAnswerSelected}) => {
+    return (
+        <Card
+            color={cardColor}
+            style={{minHeight: 150, marginBottom: 20, cursor: 'pointer'}}
+            onClick={onAnswerSelected}
+        >
+            <CardBlock>
+                <CardText>
+                    {text}
+                </CardText>
+            </CardBlock>
+        </Card>
+    );
+};
+
+const determineAnswerBlockState = (blockIndex, userAnswer, correctAnswer) => {
+    let state;
+    if (userAnswer === null) {
+        state = 'default';
+    } else {
+        if (userAnswer === correctAnswer) {
+            if (blockIndex === correctAnswer) state = 'correct';
+            else state = 'default';
+        } else {
+            if (blockIndex === userAnswer) state = 'incorrect';
+            else if (blockIndex === correctAnswer) state = 'correct';
+            else state = 'default';
+        }
+    }
+    return state;
+};
+
+const AnswerSelector = ({question, userAnswer, onAnswerSelected}) => {
+    const answerBlocks = [...new Array(4).keys()].map(i => (
+            <Answer
+                state={determineAnswerBlockState(i, userAnswer, question.correctAnswer)}
+                text={question.answers[i].text}
+                onAnswerSelected={() => onAnswerSelected(i)}
+            />
+        )
+    );
+    
     return (
         <div>
             <Row>
@@ -20,20 +61,12 @@ const AnswerSelector = ({question, onAnswerSelected}) => {
                 </Col>
             </Row>
             <Row>
-                <Col md={6}>
-                    <Answer text={question.answers[0].text} onAnswerSelected={() => onAnswerSelected(0)}/>
-                </Col>
-                <Col md={6}>
-                    <Answer text={question.answers[1].text} onAnswerSelected={() => onAnswerSelected(1)}/>
-                </Col>
+                <Col md={6}> {answerBlocks[0]} </Col>
+                <Col md={6}> {answerBlocks[1]} </Col>
             </Row>
             <Row>
-                <Col md={6}>
-                    <Answer text={question.answers[2].text} onAnswerSelected={() => onAnswerSelected(2)}/>
-                </Col>
-                <Col md={6}>
-                    <Answer text={question.answers[3].text} onAnswerSelected={() => onAnswerSelected(3)}/>
-                </Col>
+                <Col md={6}> {answerBlocks[2]} </Col>
+                <Col md={6}> {answerBlocks[3]} </Col>
             </Row>
         </div>
     );

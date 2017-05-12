@@ -14,11 +14,11 @@ class App extends Component {
                 description={description}
                 start={this.props.startQuiz}
             />
-
         } else if (this.props.view.currentView === 'questions') {
             view = <Questions
                 currentQuestionIndex={this.props.quiz.currentQuestionIndex}
                 quizData={this.props.quiz.data}
+                userAnswers={this.props.quiz.userAnswers}
                 selectAnswer={this.props.selectAnswer}
             />
         } else {
