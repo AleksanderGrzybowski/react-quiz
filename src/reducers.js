@@ -13,33 +13,28 @@ export const view = (state = initialStateView, action) => {
     }
 };
 
-const initialStateQuizData = {
-    name: 'Very challenging quiz',
-    description: loremIpsum({count: 3}),
-    questions: [...new Array(5)].map(() => (
-        {
-            text: loremIpsum({count: 1}),
-            answers: [
-                {text: loremIpsum({count: 1})},
-                {text: loremIpsum({count: 1})},
-                {text: loremIpsum({count: 1})},
-                {text: loremIpsum({count: 1})},
-            ],
-            correctAnswer: 0
-        }
-    ))
+
+const initialStateQuiz = {
+    currentQuestionIndex: 0,
+    data: {
+        name: 'Very challenging quiz',
+        description: loremIpsum({count: 3}),
+        questions: [...new Array(5)].map(() => (
+            {
+                text: loremIpsum({count: 1}),
+                answers: [
+                    {text: loremIpsum({count: 1})},
+                    {text: loremIpsum({count: 1})},
+                    {text: loremIpsum({count: 1})},
+                    {text: loremIpsum({count: 1})},
+                ],
+                correctAnswer: 0
+            }
+        ))
+    }
 };
 
-export const quizData = (state = initialStateQuizData) => {
-    return state;
-};
-
-
-const initialStateProgress = {
-    currentQuestionIndex: 0
-};
-
-export const progress = (state = initialStateProgress, action) => {
+export const quiz = (state = initialStateQuiz, action) => {
     switch (action.type) {
         case 'NEXT_QUESTION':
             return Object.assign({}, state, {currentQuestionIndex: state.currentQuestionIndex + 1});

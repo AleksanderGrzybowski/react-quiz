@@ -7,12 +7,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { quizData, view, progress } from './reducers';
+import { quiz, view } from './reducers';
 import { changeView, nextQuestion } from './actions';
 import { createLogger } from 'redux-logger';
 
 const store = createStore(
-    combineReducers({view, quizData, progress}),
+    combineReducers({view, quiz}),
     applyMiddleware(thunk, createLogger())
 );
 

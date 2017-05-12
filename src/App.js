@@ -8,16 +8,17 @@ class App extends Component {
     render() {
         let view;
         if (this.props.view.currentView === 'welcome') {
+            const {name, description} = this.props.quiz.data;
             view = <Welcome
-                name={this.props.quizData.name}
-                description={this.props.quizData.description}
+                name={name}
+                description={description}
                 start={this.props.startQuiz}
             />
 
         } else if (this.props.view.currentView === 'questions') {
             view = <Questions
-                currentQuestionIndex={this.props.progress.currentQuestionIndex}
-                quizData={this.props.quizData}
+                currentQuestionIndex={this.props.quiz.currentQuestionIndex}
+                quizData={this.props.quiz.data}
                 nextQuestion={this.props.nextQuestion}
             />
         } else {
