@@ -21,7 +21,11 @@ export const nextQuestion = () => (dispatch, getState) => {
     }
 };
 
-export const selectAnswer = (answer) => (dispatch) => {
+export const selectAnswer = (answer) => (dispatch, getState) => {
+    if (getState().quiz.uiDisabled) {
+        return;
+    }
+    
     dispatch({type: 'SELECT_ANSWER', answer});
     setTimeout(() => dispatch(nextQuestion()), 1000);
 };

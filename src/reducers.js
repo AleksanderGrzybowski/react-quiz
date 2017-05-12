@@ -16,6 +16,7 @@ const initialStateQuiz = {
     currentQuestionIndex: 0,
     userAnswers: [],
     quizDataStatus: 'loading',
+    uiDisabled: false,
     data: {}
 };
 
@@ -36,9 +37,16 @@ export const quiz = (state = initialStateQuiz, action) => {
                 userAnswers: new Array(action.data.questions.length).fill(null)
             });
         case 'SELECT_ANSWER':
-            return Object.assign({}, state, {userAnswers: setUserAnswer(state.userAnswers, action.answer, state.currentQuestionIndex)});
+            return Object.assign({}, state, {
+                    userAnswers: setUserAnswer(state.userAnswers, action.answer, state.currentQuestionIndex),
+                    uiDisabled: true
+                }
+            );
         case 'NEXT_QUESTION':
-            return Object.assign({}, state, {currentQuestionIndex: state.currentQuestionIndex + 1});
+            return Object.assign({}, state, {
+                currentQuestionIndex: state.currentQuestionIndex + 1,
+                uiDisabled: false
+            });
         default:
             return state;
     }
