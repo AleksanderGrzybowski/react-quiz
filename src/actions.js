@@ -1,10 +1,14 @@
 import axios from 'axios';
+import shuffle from 'shuffle-array';
 
 export const fetchQuizData = () => (dispatch) => {
     dispatch({type: 'QUIZ_FETCH_START'});
 
     axios.get('/quiz.json')
-        .then(({data}) => dispatch({type: 'QUIZ_FETCH_READY', data}))
+        .then(({data}) => {
+            data.questions = shuffle(data.questions);
+            return dispatch({type: 'QUIZ_FETCH_READY', data});
+        })
         .catch(() => dispatch({type: 'QUIZ_FETCH_ERROR'}));
 };
 
