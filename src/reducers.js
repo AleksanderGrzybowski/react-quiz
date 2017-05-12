@@ -16,7 +16,7 @@ export const view = (state = initialStateView, action) => {
 const initialStateQuizData = {
     name: 'Very challenging quiz',
     description: loremIpsum({count: 3}),
-    questions: [
+    questions: [...new Array(5)].map(() => (
         {
             text: loremIpsum({count: 1}),
             answers: [
@@ -27,9 +27,23 @@ const initialStateQuizData = {
             ],
             correctAnswer: 0
         }
-    ]
+    ))
 };
 
 export const quizData = (state = initialStateQuizData) => {
     return state;
+};
+
+
+const initialStateProgress = {
+    currentQuestionIndex: 0
+};
+
+export const progress = (state = initialStateProgress, action) => {
+    switch (action.type) {
+        case 'NEXT_QUESTION':
+            return Object.assign({}, state, {currentQuestionIndex: state.currentQuestionIndex + 1});
+        default:
+            return state;
+    }
 };

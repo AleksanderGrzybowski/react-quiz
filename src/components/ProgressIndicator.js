@@ -2,7 +2,7 @@ import React from 'react';
 import { Badge, Col, Row } from 'reactstrap';
 
 const ProgressIndicator = ({max, current}) => {
-    const range = (max) => [...new Array(max).keys()].map(i => i + 1);
+    const range = (max) => [...new Array(max).keys()];
     const style = {fontSize: 30, marginRight: 5};
 
     const badges = range(max).map(i => (

@@ -7,19 +7,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { quizData, view } from './reducers';
-import { changeView } from './actions';
+import { quizData, view, progress } from './reducers';
+import { changeView, nextQuestion } from './actions';
 import { createLogger } from 'redux-logger';
 
 const store = createStore(
-    combineReducers({view, quizData}),
+    combineReducers({view, quizData, progress}),
     applyMiddleware(thunk, createLogger())
 );
 
 const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => ({
     changeView: (viewName) => dispatch(changeView(viewName)),
-    startQuiz: () => dispatch(changeView('questions'))
+    startQuiz: () => dispatch(changeView('questions')),
+    nextQuestion: () => dispatch(nextQuestion())
 });
 
 
