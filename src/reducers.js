@@ -15,7 +15,7 @@ export const view = (state = initialStateView, action) => {
 const initialStateQuiz = {
     currentQuestionIndex: 0,
     userAnswers: [],
-    quizDataStatus: 'loading',
+    quizDataStatus: '',
     uiDisabled: false,
     data: {}
 };
@@ -26,8 +26,6 @@ const setUserAnswer = (userAnswers, answer, index) => {
 
 export const quiz = (state = initialStateQuiz, action) => {
     switch (action.type) {
-        case 'QUIZ_FETCH_START':
-            return Object.assign({}, state, {quizDataStatus: 'loading'});
         case 'QUIZ_FETCH_ERROR':
             return Object.assign({}, state, {quizDataStatus: 'error'});
         case 'QUIZ_FETCH_READY':

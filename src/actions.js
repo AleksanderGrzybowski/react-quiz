@@ -6,6 +6,8 @@ export const fetchQuizData = () => (dispatch) => {
 
     axios.get('/quiz.json')
         .then(({data}) => {
+            document.getElementsByClassName('loader')[0].remove();
+            
             data.questions = shuffle(data.questions);
             return dispatch({type: 'QUIZ_FETCH_READY', data});
         })

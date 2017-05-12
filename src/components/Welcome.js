@@ -3,9 +3,7 @@ import { Button, Col, Jumbotron, Row } from 'reactstrap';
 
 const Welcome = ({quizDataStatus, name, description, start}) => {
     let content;
-    if (quizDataStatus === 'loading') {
-        content = <h1 className="text-center">Loading...</h1>
-    } else if (quizDataStatus === 'error') {
+    if (quizDataStatus === 'error') {
         content = <h1 className="text-center">Error fetching quiz data</h1>
     } else {
         content = (
