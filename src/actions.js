@@ -1,17 +1,9 @@
 import axios from 'axios';
 
-// http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
-const getURLParameter = (name) => decodeURIComponent(
-    (new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)')
-        .exec(location.search) || [null, ''])[1]
-        .replace(/\+/g, '%20')
-) || null;
-
 export const fetchQuizData = () => (dispatch) => {
     dispatch({type: 'QUIZ_FETCH_START'});
 
-    const name = getURLParameter('name');
-    axios.get(`/quizes/${name}.json`)
+    axios.get('/quiz.json')
         .then(({data}) => dispatch({type: 'QUIZ_FETCH_READY', data}))
         .catch(() => dispatch({type: 'QUIZ_FETCH_ERROR'}));
 };
