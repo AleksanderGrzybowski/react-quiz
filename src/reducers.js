@@ -36,10 +36,9 @@ export const quiz = (state = initialStateQuiz, action) => {
             });
         case 'SELECT_ANSWER':
             return Object.assign({}, state, {
-                    userAnswers: setUserAnswer(state.userAnswers, action.answer, state.currentQuestionIndex),
-                    uiDisabled: true
-                }
-            );
+                userAnswers: setUserAnswer(state.userAnswers, action.answer, state.currentQuestionIndex),
+                uiDisabled: true
+            });
         case 'NEXT_QUESTION':
             return Object.assign({}, state, {
                 currentQuestionIndex: state.currentQuestionIndex + 1,

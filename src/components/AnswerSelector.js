@@ -1,51 +1,28 @@
 import React from 'react';
-import { Card, CardBlock, CardText, Col, Row } from 'reactstrap';
-
-const Answer = ({text, onAnswerSelected, state}) => {
-    let cardColor;
-    if (state === 'correct') {
-        cardColor = 'success';
-    } else if (state === 'incorrect') {
-        cardColor = 'danger';
-    } else if (state === 'default') {
-        cardColor = '';
-    }
-
-    return (
-        <Card
-            color={cardColor}
-            className={state !== 'default' ? 'selected-answer' : ''}
-            style={{minHeight: 150, marginBottom: 20, cursor: 'pointer'}}
-            onClick={onAnswerSelected}
-        >
-            <CardBlock>
-                <CardText>
-                    {text}
-                </CardText>
-            </CardBlock>
-        </Card>
-    );
-};
+import { Col, Row } from 'reactstrap';
+import Answer from './Answer';
+import { range } from '../utils';
 
 const determineAnswerBlockState = (blockIndex, userAnswer, correctAnswer) => {
-    let state;
     if (userAnswer === null) {
-        state = 'default';
+        return 'default';
     } else {
         if (userAnswer === correctAnswer) {
-            if (blockIndex === correctAnswer) state = 'correct';
-            else state = 'default';
+            return (blockIndex === correctAnswer) ? 'correct' : 'default';
         } else {
-            if (blockIndex === userAnswer) state = 'incorrect';
-            else if (blockIndex === correctAnswer) state = 'correct';
-            else state = 'default';
+            if (blockIndex === userAnswer) {
+                return 'incorrect';
+            } else if (blockIndex === correctAnswer) {
+                return 'correct';
+            } else {
+                return 'default';
+            }
         }
     }
-    return state;
 };
 
 const AnswerSelector = ({question, userAnswer, onAnswerSelected}) => {
-    const answerBlocks = [...new Array(4).keys()].map(i => (
+    const answerBlocks = range(4).map(i => (
             <Answer
                 state={determineAnswerBlockState(i, userAnswer, question.correctAnswer)}
                 text={question.answers[i].text}

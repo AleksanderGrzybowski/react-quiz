@@ -34,6 +34,8 @@ class App extends Component {
                 correctAnswers={this.correctAnswers()}
                 userAnswers={this.props.quiz.userAnswers}
                 selectAnswer={this.props.selectAnswer}
+                currentQuestion={this.props.quiz.data.questions[this.props.quiz.currentQuestionIndex]}
+                userAnswer={this.props.quiz.userAnswers[this.props.quiz.currentQuestionIndex]}
             />
         } else if (this.props.view.currentView === 'summary') {
             view = <Summary
