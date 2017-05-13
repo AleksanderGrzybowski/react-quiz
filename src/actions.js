@@ -16,6 +16,11 @@ export const fetchQuizData = () => (dispatch) => {
 
 export const changeView = (view) => ({type: 'CHANGE_VIEW', view});
 
+export const restartQuiz = () => (dispatch) => {
+    dispatch(changeView('welcome'));
+    dispatch({type: 'RESET_ANSWERS'});
+};
+
 export const nextQuestion = () => (dispatch, getState) => {
     const currentQuestionIndex = getState().quiz.currentQuestionIndex;
     const questionsCount = getState().quiz.data.questions.length;

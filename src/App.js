@@ -39,6 +39,7 @@ class App extends Component {
             view = <Summary
                 score={this.correctAnswersCount()}
                 total={this.props.quiz.data.questions.length}
+                restartQuiz={this.props.restartQuiz}
             />
         }
 

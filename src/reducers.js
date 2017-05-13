@@ -45,6 +45,12 @@ export const quiz = (state = initialStateQuiz, action) => {
                 currentQuestionIndex: state.currentQuestionIndex + 1,
                 uiDisabled: false
             });
+        case 'RESET_ANSWERS':
+            return Object.assign({}, state, {
+                currentQuestionIndex: 0,
+                userAnswers: new Array(state.data.questions.length).fill(null),
+                uiDisabled: false
+            });
         default:
             return state;
     }
