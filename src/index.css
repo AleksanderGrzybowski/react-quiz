@@ -1,0 +1,3 @@
+div.selected-answer {
+    transition: background-color 200ms linear;
+}

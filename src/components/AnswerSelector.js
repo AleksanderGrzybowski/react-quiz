@@ -14,6 +14,7 @@ const Answer = ({text, onAnswerSelected, state}) => {
     return (
         <Card
             color={cardColor}
+            className={state !== 'default' ? 'selected-answer' : ''}
             style={{minHeight: 150, marginBottom: 20, cursor: 'pointer'}}
             onClick={onAnswerSelected}
         >
@@ -52,7 +53,7 @@ const AnswerSelector = ({question, userAnswer, onAnswerSelected}) => {
             />
         )
     );
-    
+
     return (
         <div>
             <Row>
